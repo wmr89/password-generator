@@ -1,34 +1,21 @@
 //Assignment Code
 var generateBtn = document.querySelector("#generate");
 
-//Write password to the #password input
-function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
-
-passwordText.value = password;
-
-}
-
 // Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
-//Define characters for numbers, spceial characters, lowercase letters, and uppercase letters.
-//let specialChar = ["@", "$", "*", "!", "%", "&", "#", "?", ">", ".", "=", "+", "(", "-", ")", "<", "/", "\\", ';', '[', ']', ':', '{', '}', '|', '“', "'", "_"];
-//let numberChar = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
-//let lowerChar = 'abcdefghijklmnopqrstuvwxyz'.split('');
-//let upperChar = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+generateBtn.addEventListener("click", pwLength);
+
+//Assign variable for numbers, special characters, lowercase letters, and uppercase letters.
 let specialChar = "!@#$%^&*()-_+={}[]|:;'<,>.?/";
 let numberChar = "0123456789";
 let lowerChar = 'abcdefghijklmnopqrstuvwxyz';
 let upperChar = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
-
-// Prompt to ask for password length.
+//function to create password
 function pwLength() {
 
-
-
+// Prompt to ask for password length.
   var passwordLength = prompt("How many characters do you want in your password? \n Enter a number between 8 and 128");
+
 //Confirm length is a number and inbetween 8-128 characters.
   if (isNaN(passwordLength) || passwordLength <8 || passwordLength >128) {
         alert("Please enter a number in between 8 and 128");
@@ -36,21 +23,22 @@ function pwLength() {
       }
       console.log(passwordLength)
 
-//Ask if user wants to use numbers, spceial characters, lowercase letters, and/or uppercase letters.
+//Ask if user wants to use numbers, special characters, lowercase letters, and/or uppercase letters.
   let confirmLC = confirm("Do you want to use lower case letters?")
   let confirmUC = confirm("Do you want to use upper case letters?")
   let confirmN = confirm("Do you want to use numbers?")
   let confirmSC = confirm("Do you want to use special characters?")
 
-if (confirmLC == "False" && confirmUC == "False" && confirmN == "False" && confirmSC == "False") {
-  alert("You must choose at least one character type");
-  return pwLength();
-}
+  //Check to confirm user chose at least one set of characters.
+  if (confirmLC == "False" && confirmUC == "False" && confirmN == "False" && confirmSC == "False") {  
+    alert("You must choose at least one character type");
+    return pwLength();
+  }
 
-//create characters for passwordgi
+//create string of characters for password
   passwordCharacters="";
 
-//If statements selecter user chosen characters.
+//If statements to select user chosen characters to add into character string
 
   if (confirmLC == true) {
     passwordCharacters += lowerChar;
@@ -67,24 +55,21 @@ if (confirmLC == "False" && confirmUC == "False" && confirmN == "False" && confi
 
   console.log(passwordCharacters);
 
-  let passwordFinal = "";
+  //Set up string for final password
+  let password = "";
 
+  //add random characters from the character string into the password string.
   for (let i = 0; i <passwordLength; i++) {
     let randomSelect = Math.floor(Math.random() * passwordCharacters.length);
-    passwordFinal += passwordCharacters[randomSelect];
+    password += passwordCharacters[randomSelect];
   }
-  console.log(passwordFinal);812
 
-//let passwordInfo = {
-  //length: passwordLength,
- // lcChar: confirmLC,
-  //ucChar: confirmUC,
- // numChar: confirmN,
- // spChar: confirmSC 
+  console.log(password);
+
+  //Write password to the #password input
+
+  var passwordText = document.querySelector("#password");
+
+  passwordText.value = password;
+
 }
-//console.log(passwordInfo)
-
-
-//function generatePassword() {
-  pwLength();
-//}
