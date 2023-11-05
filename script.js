@@ -14,14 +14,14 @@ let upperChar = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 function pwLength() {
 
 // Prompt to ask for password length.
-  var passwordLength = prompt("How many characters do you want in your password? \n Enter a number between 8 and 128");
+  let passwordLength = prompt("How many characters do you want in your password? \n Enter a number between 8 and 128");
 
 //Confirm length is a number and inbetween 8-128 characters.
   if (isNaN(passwordLength) || passwordLength <8 || passwordLength >128) {
         alert("Please enter a number in between 8 and 128");
         return pwLength();
       }
-      console.log(passwordLength)
+      console.log(passwordLength);
 
 //Ask if user wants to use numbers, special characters, lowercase letters, and/or uppercase letters.
   let confirmLC = confirm("Do you want to use lower case letters?")
@@ -30,26 +30,26 @@ function pwLength() {
   let confirmSC = confirm("Do you want to use special characters?")
 
   //Check to confirm user chose at least one set of characters.
-  if (confirmLC == "False" && confirmUC == "False" && confirmN == "False" && confirmSC == "False") {  
+  if (confirmLC === false && confirmUC === false && confirmN === false && confirmSC === false) {  
     alert("You must choose at least one character type");
     return pwLength();
   }
 
 //create string of characters for password
-  passwordCharacters="";
+  let passwordCharacters="";
 
 //If statements to select user chosen characters to add into character string
 
-  if (confirmLC == true) {
+  if (confirmLC === true) {
     passwordCharacters += lowerChar;
   }
-  if (confirmUC == true) {
+  if (confirmUC === true) {
     passwordCharacters += upperChar;
   }
-  if (confirmN == true) {
+  if (confirmN === true) {
     passwordCharacters += numberChar;
   }
-  if (confirmSC == true) {
+  if (confirmSC === true) {
     passwordCharacters += specialChar;
   }
 
